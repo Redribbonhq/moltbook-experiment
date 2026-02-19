@@ -4,9 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Moltbook Experiment</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
+
   <div class="bgGlow"></div>
 
   <header class="header">
@@ -27,13 +28,16 @@
   </header>
 
   <main class="wrap">
+
     <!-- HOME PAGE -->
     <section id="page-home" class="page show">
+
       <section class="hero">
+
         <div class="heroLeft">
           <div class="label">Current output</div>
-          <div class="big" id="bigValue">1</div>
-          <div class="subline" id="subline">Flip 000001 · 03:00</div>
+          <div class="big" id="bigValue">–</div>
+          <div class="subline" id="subline">Waiting…</div>
 
           <div class="counts">
             <div class="countCard">
@@ -55,7 +59,7 @@
           </div>
 
           <div class="note">
-            Outputs are logged at fixed intervals. The dashboard is observational.
+            Outputs are generated server-side every 5 minutes.
           </div>
         </div>
 
@@ -64,7 +68,7 @@
           <div class="panelSub">Cumulative deviation from equiprobability</div>
 
           <div class="chartPanel">
-            <canvas id="chart" width="900" height="360"></canvas>
+            <canvas id="chart"></canvas>
           </div>
 
           <div class="chartLegend">
@@ -78,6 +82,7 @@
             </div>
           </div>
         </div>
+
       </section>
 
       <section class="strip">
@@ -87,20 +92,22 @@
         </div>
         <div class="stripRow" id="stripRow" aria-label="Live feed"></div>
       </section>
+
     </section>
 
     <!-- ABOUT PAGE -->
     <section id="page-about" class="page">
       <section class="aboutCard">
+
         <div class="aboutTitle">About</div>
 
         <div class="aboutText">
           The Moltbook Experiment is a public live study of binary randomness under conditions of collective observation.
-          A new 0 or 1 is generated at fixed intervals. Outputs are logged, summarized, and displayed in real time.
+          A new 0 or 1 is generated server-side every 5 minutes and displayed here in real time.
         </div>
 
         <div class="aboutText">
-          Interpretation is left to the observer. The system is designed for transparency and simple auditable mechanics.
+          The system is designed for transparency and simple auditable mechanics.
         </div>
 
         <div class="aboutGrid">
@@ -114,50 +121,45 @@
           </div>
           <div class="aboutBox">
             <div class="k">Visibility</div>
-            <div class="v">Live feed plus historical trace</div>
+            <div class="v">Live feed plus deviation trace</div>
           </div>
           <div class="aboutBox">
             <div class="k">Posting</div>
-            <div class="v">Periodic summaries to social channels</div>
+            <div class="v">Backend-ready for social automation</div>
           </div>
         </div>
+
       </section>
     </section>
 
     <!-- BOTTOM AREA -->
     <section class="bottomGrid">
+
       <div class="quickLinks">
         <div class="bottomTitle">Quick links</div>
 
         <div class="iconRow">
-          <a class="iconBtn imgBtn" href="#" id="linkTwitter" target="_blank" rel="noreferrer">
-            <img src="./icons/x.jpg" alt="X" />
+          <a class="iconBtn imgBtn" href="https://x.com/Moltbookexperi" target="_blank" rel="noreferrer">
+            <img src="/x.jpg" alt="X">
           </a>
 
-          <a class="iconBtn imgBtn" href="#" id="linkMoltbook" target="_blank" rel="noreferrer">
-            <img src="./icons/moltbook.jpg" alt="Moltbook" />
+          <a class="iconBtn imgBtn" href="#" id="linkMoltbook">
+            <img src="/moltbook.jpg" alt="Moltbook">
           </a>
         </div>
 
         <div class="hint">
-          Links open the official feeds. Embedding may be blocked by Moltbook.
+          Official experiment channels.
         </div>
       </div>
 
-      <div class="moltWindow">
-        <div class="bottomTitle">Moltbook window</div>
-        <div class="moltFrameWrap">
-          <iframe id="moltIframe" title="Moltbook" src="about:blank"></iframe>
-        </div>
-        <div class="hint">
-          If embedding is blocked, this will remain blank. Use the Moltbook quick link.
-        </div>
-      </div>
     </section>
 
     <footer class="footer">The Moltbook Experiment</footer>
+
   </main>
 
-  <script src="./app.js"></script>
+  <script src="/app.js"></script>
+
 </body>
 </html>
