@@ -1,5 +1,6 @@
 // ====== CONFIG ======
 const TWITTER_URL = "https://x.com/Moltbookexperi";
+
 document.getElementById("linkTwitter").href = TWITTER_URL;
 
 // ====== Tabs ======
@@ -37,9 +38,11 @@ let flips = [];
 let ones = 0;
 let flipId = 0;
 let chartSeries = [];
+let lastTimestamp = null;
 
 const MAX_POINTS = 240;
 const MAX_STRIP_ITEMS = 60;
+const INTERVAL_MS = 300000; // 5 minutes
 
 // ====== Helpers ======
 function nowHHMM() {
@@ -50,7 +53,7 @@ function formatFlipId(n) {
   return String(n).padStart(6, "0");
 }
 
-// ====== Chart ======
+// ====== Chart Setup ======
 function setCanvasSizeForDPI() {
   const dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
   const cssW = canvas.clientWidth;
@@ -112,6 +115,7 @@ function addFlip(v) {
     <div class="bit" style="color:${v === 1 ? "var(--green)" : "var(--red)"}">${v}</div>
     <div class="t">${formatFlipId(flipId)} · ${nowHHMM()}</div>
   `;
+
   strip.insertBefore(token, strip.firstChild);
 
   while (strip.children.length > MAX_STRIP_ITEMS) {
@@ -130,14 +134,20 @@ function addFlip(v) {
   drawChart();
 }
 
-// ====== Backend Fetch ======
+// ====== Backend Poll ======
 async function fetchFlip() {
   try {
     const res = await fetch("/api/post");
     const data = await res.json();
-    if (data.flip === 0 || data.flip === 1) {
+
+    if (
+      (data.flip === 0 || data.flip === 1) &&
+      data.timestamp !== lastTimestamp
+    ) {
+      lastTimestamp = data.timestamp;
       addFlip(data.flip);
     }
+
   } catch (err) {
     console.error("Fetch failed", err);
   }
@@ -147,7 +157,7 @@ async function fetchFlip() {
 function startCountdown() {
   setInterval(() => {
     const now = Date.now();
-    const next = Math.ceil(now / 300000) * 300000;
+    const next = Math.ceil(now / INTERVAL_MS) * INTERVAL_MS;
     const diff = next - now;
     const s = Math.ceil(diff / 1000);
     const mm = String(Math.floor(s / 60)).padStart(2, "0");
@@ -159,7 +169,7 @@ function startCountdown() {
 // ====== INIT ======
 setCanvasSizeForDPI();
 window.addEventListener("resize", setCanvasSizeForDPI);
+
 startCountdown();
 fetchFlip();
-setInterval(fetchFlip, 300000);
-
+setInterval(fetchFlip, 10000); // poll every 10s
