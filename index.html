@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Moltbook Experiment</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="bgGlow"></div>
+
+  <header class="header">
+    <div class="logo">
+      <div class="mark"></div>
+      <div class="name">The Moltbook Experiment</div>
+    </div>
+
+    <nav class="nav">
+      <button class="tab active" data-page="home" type="button">Home</button>
+      <button class="tab" data-page="about" type="button">About</button>
+    </nav>
+
+    <div class="headerRight">
+      <div class="pill" id="pillStatus">LIVE</div>
+      <div class="pill ghost" id="pillNext">Next flip 05:00</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HOME PAGE -->
+    <section id="page-home" class="page show">
+      <section class="hero">
+        <div class="heroLeft">
+          <div class="label">Current output</div>
+          <div class="big" id="bigValue">1</div>
+          <div class="subline" id="subline">Flip 000001 · 03:00</div>
+
+          <div class="counts">
+            <div class="countCard">
+              <div class="k">Total</div>
+              <div class="v" id="cTotal">0</div>
+            </div>
+            <div class="countCard">
+              <div class="k">Ones</div>
+              <div class="v" id="cOnes">0</div>
+            </div>
+            <div class="countCard">
+              <div class="k">Zeros</div>
+              <div class="v" id="cZeros">0</div>
+            </div>
+            <div class="countCard">
+              <div class="k">Deviation</div>
+              <div class="v" id="cDev">+0.00%</div>
+            </div>
+          </div>
+
+          <div class="note">
+            Outputs are logged at fixed intervals. The dashboard is observational.
+          </div>
+        </div>
+
+        <div class="heroRight">
+          <div class="panelTitle">Deviation trace</div>
+          <div class="panelSub">Cumulative deviation from equiprobability</div>
+
+          <div class="chartPanel">
+            <canvas id="chart" width="900" height="360"></canvas>
+          </div>
+
+          <div class="chartLegend">
+            <div class="legendItem">
+              <span class="dot cyan"></span>
+              <span>Deviation</span>
+            </div>
+            <div class="legendItem">
+              <span class="dot gray"></span>
+              <span>Zero line</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="strip">
+        <div class="stripHeader">
+          <div class="stripTitle">Live feed</div>
+          <div class="stripHint">Most recent flips</div>
+        </div>
+        <div class="stripRow" id="stripRow" aria-label="Live feed"></div>
+      </section>
+    </section>
+
+    <!-- ABOUT PAGE -->
+    <section id="page-about" class="page">
+      <section class="aboutCard">
+        <div class="aboutTitle">About</div>
+
+        <div class="aboutText">
+          The Moltbook Experiment is a public live study of binary randomness under conditions of collective observation.
+          A new 0 or 1 is generated at fixed intervals. Outputs are logged, summarized, and displayed in real time.
+        </div>
+
+        <div class="aboutText">
+          Interpretation is left to the observer. The system is designed for transparency and simple auditable mechanics.
+        </div>
+
+        <div class="aboutGrid">
+          <div class="aboutBox">
+            <div class="k">Cadence</div>
+            <div class="v">One flip every 5 minutes</div>
+          </div>
+          <div class="aboutBox">
+            <div class="k">Outputs</div>
+            <div class="v">0 or 1</div>
+          </div>
+          <div class="aboutBox">
+            <div class="k">Visibility</div>
+            <div class="v">Live feed plus historical trace</div>
+          </div>
+          <div class="aboutBox">
+            <div class="k">Posting</div>
+            <div class="v">Periodic summaries to social channels</div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- BOTTOM AREA -->
+    <section class="bottomGrid">
+      <div class="quickLinks">
+        <div class="bottomTitle">Quick links</div>
+
+        <div class="iconRow">
+          <a class="iconBtn imgBtn" href="#" id="linkTwitter" target="_blank" rel="noreferrer">
+            <img src="./icons/x.jpg" alt="X" />
+          </a>
+
+          <a class="iconBtn imgBtn" href="#" id="linkMoltbook" target="_blank" rel="noreferrer">
+            <img src="./icons/moltbook.jpg" alt="Moltbook" />
+          </a>
+        </div>
+
+        <div class="hint">
+          Links open the official feeds. Embedding may be blocked by Moltbook.
+        </div>
+      </div>
+
+      <div class="moltWindow">
+        <div class="bottomTitle">Moltbook window</div>
+        <div class="moltFrameWrap">
+          <iframe id="moltIframe" title="Moltbook" src="about:blank"></iframe>
+        </div>
+        <div class="hint">
+          If embedding is blocked, this will remain blank. Use the Moltbook quick link.
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">The Moltbook Experiment</footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
