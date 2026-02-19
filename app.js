@@ -313,4 +313,24 @@ startCountdown();
 // This is only for aesthetics. Backend will drive real 5-minute flips later.
 setInterval(() => {
   addFlip(Math.random() < 0.5 ? 0 : 1);
+
 }, 2500);
+async function fetchFlip() {
+  try {
+    const res = await fetch("/api/post");
+    const data = await res.json();
+
+    if (data.flip === 0 || data.flip === 1) {
+      addFlip(data.flip);
+    }
+
+  } catch (err) {
+    console.error("Fetch failed", err);
+  }
+}
+
+// Run every 5 minutes
+setInterval(fetchFlip, 300000);
+
+// Also run once on load
+fetchFlip();
