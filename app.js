@@ -1,7 +1,14 @@
-// ====== CONFIG ======
-const TWITTER_URL = "https://x.com/Moltbookexperi";
+document.addEventListener("DOMContentLoaded", function () {
 
-document.getElementById("linkTwitter").href = TWITTER_URL;
+  // ====== CONFIG ======
+  const TWITTER_URL = "https://x.com/Moltbookexperi";
+
+  const twitterLink = document.getElementById("linkTwitter");
+  if (twitterLink) {
+    twitterLink.href = TWITTER_URL;
+  }
+
+  // everything else stays below here...
 
 // ====== Tabs ======
 const tabs = document.querySelectorAll(".tab");
@@ -173,3 +180,5 @@ window.addEventListener("resize", setCanvasSizeForDPI);
 startCountdown();
 fetchFlip();
 setInterval(fetchFlip, 10000); // poll every 10s
+
+});
